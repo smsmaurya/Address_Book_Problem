@@ -32,8 +32,22 @@ public class AddressBookMain {
     public static void main(String[] args) {
         System.out.println("********************Welcome in Address Book problem..************************\n");
 
-        // print contact details
-        System.out.println("Contact created\n"+addContactDetails());
+        System.out.println("Enter how many contacts you want to add :");
+        int totalContact = sc.nextInt();
+
+        // make a CreateContact type array
+        CreateContact[] contacts = new CreateContact[totalContact];
+
+        // add contacts in an array
+        for(int i=0;i<totalContact;i++){
+            contacts[i] = addContactDetails();
+            System.out.println();
+        }
+
+        // display contacts
+        for (CreateContact contact : contacts){
+            System.out.println(contact+"\n");
+        }
 
     }
 }
