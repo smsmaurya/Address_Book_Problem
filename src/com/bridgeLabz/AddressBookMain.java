@@ -2,7 +2,7 @@ package com.bridgeLabz;
 
 import java.util.Scanner;
 
-public class AddressBookMain extends AddressBookMethods{
+public class AddressBookMain extends Methods{
 
     static Scanner sc = new Scanner(System.in);
 
@@ -18,13 +18,7 @@ public class AddressBookMain extends AddressBookMethods{
         // add contacts in an array
         for(int i=0;i<totalContact;i++){
             contacts[i] = addContactDetails();
-            System.out.println(" contact added successfully\n");
-        }
-
-
-        // display contacts
-        for (Contact contact : contacts){
-            System.out.println(contact+"\n");
+            System.out.println("Contact added successfully\n");
         }
 
         System.out.println("did you want to edit any contact 'yes' or 'no'?");
