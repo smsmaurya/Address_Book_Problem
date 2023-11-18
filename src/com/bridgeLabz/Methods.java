@@ -96,4 +96,25 @@ public class Methods {
         }
     }
 
+    public static void deleteContact(String response,Contact[] contacts){
+
+        if(response.equalsIgnoreCase("yes")) {
+            System.out.println("Enter then first name of person :");
+            String firstName = sc.next();
+
+            System.out.println("Enter then last name of person :");
+            String lastName = sc.next();
+
+            for (int i=0;i<contacts.length;i++){
+                String objAsString = String.valueOf(contacts[i]);
+                if(objAsString.contains(firstName) && objAsString.contains(lastName)){
+                    contacts[i] = null;
+                    System.out.println("Contact deleted.");
+                }
+            }
+
+        }
+
+    }
+
 }

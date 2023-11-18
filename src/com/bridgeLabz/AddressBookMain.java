@@ -25,5 +25,9 @@ public class AddressBookMain extends Methods{
         String ans = sc.next();
         editContact(ans,contacts);
 
+        System.out.println("did you want to delete any contact 'yes' or 'no'?");
+        String response = sc.next();
+        deleteContact(response,contacts);
+
     }
 }
