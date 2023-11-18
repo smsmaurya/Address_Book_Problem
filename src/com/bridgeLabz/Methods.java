@@ -3,7 +3,7 @@ package com.bridgeLabz;
 
 import java.util.Scanner;
 
-public class AddressBookMethods {
+public class Methods {
 
     static Scanner sc = new Scanner(System.in);
 
@@ -43,18 +43,14 @@ public class AddressBookMethods {
             for(Contact contact : contacts){
                 // take contact object as string and check contact is present or not
                 String edContact = String.valueOf(contact);
-                if(edContact.contains(fName) || edContact.contains(lName)){
-
-                    System.out.println("contact is exist");
+                if(edContact.contains(fName) && edContact.contains(lName)){
                     System.out.println("what do you want to edit('address','city','state','zipcode','phoneNum','email') choose anyone:");
                     String changes = sc.next();
                     changeContactDetail(changes, contact);
 
-                    for (Contact modifyContact : contacts){
-                        String editedContact = String.valueOf(contact);
-                        if(editedContact.contains(fName) || editedContact.contains(lName)) {
-                            System.out.println(modifyContact + "\n");
-                        }
+                    String editedContact = String.valueOf(contact);
+                    if(editedContact.contains(fName) && editedContact.contains(lName)) {
+                        System.out.println(editedContact + "\n");
                     }
                 }
                 else{
