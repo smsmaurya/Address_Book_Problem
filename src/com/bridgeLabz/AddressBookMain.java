@@ -1,33 +1,32 @@
 package com.bridgeLabz;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddressBookMain extends Methods{
 
-    static Scanner sc = new Scanner(System.in);
-
     public static void main(String[] args) {
-        System.out.println("********************Welcome in Address Book problem..************************\n");
-
-        System.out.println("Enter how many contacts you want to add :");
-        int totalContact = sc.nextInt();
-
-        // make a 1Contact type array
-        Contact[] contacts = new Contact[totalContact];
-
-        // add contacts in an array
-        for(int i=0;i<totalContact;i++){
-            contacts[i] = addContactDetails();
-            System.out.println("Contact added successfully\n");
-        }
-
-        System.out.println("did you want to edit any contact 'yes' or 'no'?");
-        String ans = sc.next();
-        editContact(ans,contacts);
-
-        System.out.println("did you want to delete any contact 'yes' or 'no'?");
-        String response = sc.next();
-        deleteContact(response,contacts);
-
+        ArrayList<Contact> contactList = new ArrayList<>();
+        selectOption(contactList);
     }
+
+    public static void selectOption(List<Contact> contact){
+
+        System.out.println("Choose number of the given option if you want to :\n1. Add Contact \n2. Edit Contact \n3. Show Contacts \n4. Delete Contact \n5. Exit");
+        int number = sc.nextInt();
+        switch(number){
+            case 1:  addContact();
+                break;
+            case 2:  editContact();
+                break;
+            case 3:  showContacts();
+                break;
+            case 4:  deleteContact();
+                break;
+            case 5:  exitFromAddressBook();
+                break;
+            default : System.out.println("Choose valid number.");
+        }
+    }
+
 }
