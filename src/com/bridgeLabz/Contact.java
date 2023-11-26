@@ -71,6 +71,8 @@ public class Contact {
         String firstName = sc.next();
         System.out.print("Enter last name : ");
         String lastName = sc.next();
+        boolean check = findContact(contact,firstName,lastName);
+        if(!check) {
             contacts.setLastName(lastName);
             contacts.setFirstName(firstName);
             System.out.print("Enter address : ");
@@ -85,6 +87,8 @@ public class Contact {
             contacts.setPhoneNumber(sc.nextLong());
             System.out.print("Enter email id : ");
             contacts.setEmail(sc.next());
+        }
+        else System.out.println("Contact already exist.");
         return contacts;
     }
 
