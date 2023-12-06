@@ -60,7 +60,8 @@ public class AddressBookMain{
         }
     }
 
-    public void displayAddressBook(Object key) { System.out.println(addressBookMap.get(key).getAddressBookName()); }
+    public void displayAddressBook(Object key) {
+        System.out.println(addressBookMap.get(key).getAddressBookName()); }
 
     public void createAddressBook(){
         System.out.println("Enter the address book name:");

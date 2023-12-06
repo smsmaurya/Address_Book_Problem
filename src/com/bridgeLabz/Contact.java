@@ -1,6 +1,8 @@
 package com.bridgeLabz;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Contact {
@@ -156,6 +158,15 @@ public class Contact {
     }
 
     public  void showContacts(ArrayList<Contact> contact) {
+        if(contact.isEmpty()){
+            System.out.println("No contacts are available in this address book.");
+            return;
+        }
+        Collections.sort(contact,(contact1,contact2)->{
+            String name1 = contact1.getFirstName() + " "+contact1.getLastName();
+            String name2 = contact2.getFirstName() + " "+contact2.getLastName();
+            return  name1.compareToIgnoreCase(name2);
+        });
         for(Contact contacts : contact){
             System.out.println("First Name: '" + contacts.getFirstName() +"'  "+ "Last Name: '" + contacts.getLastName() +"'\n"+ "Address : '"+contacts.getAddress()+ "'  City : " + contacts.getCity() +"  "+ "State : " + contacts.getState()+" "
                     + "zip : '" + contacts.getZip() +"'\n"+"Phone Number : '" + contacts.getPhoneNumber() +"'\n"+ "Email Id: '" + contacts.getEmail()+"'\n");
