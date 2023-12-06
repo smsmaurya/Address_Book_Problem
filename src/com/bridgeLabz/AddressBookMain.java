@@ -19,7 +19,7 @@ public class AddressBookMain{
     public void multipleAddressBooks() {
         boolean check = true;
         while (check){
-            System.out.println("Select \n1. for creating Address Book\n2. for show address book\n3. search Person State And City\n4.Exit");
+            System.out.println("Select \n1. for creating Address Book\n2. for show address book\n3. search Person State And City\n4.Search person in AddressBook System\n5.Exit");
             int select = sc.nextInt();
             switch (select){
                 case 1: createAddressBook();
@@ -46,6 +46,11 @@ public class AddressBookMain{
                     }
                     break;
                 case 4:
+                    System.out.println("Enter city or state to search: ");
+                    String city_Or_State = sc.next();
+                    searchPersonByCityOrStateInWholeAddressBook(city_Or_State);
+                    break;
+                case 5:
                     System.out.println("Thank you to visit here.");
                     check = false;
                     break;
@@ -71,9 +76,19 @@ public class AddressBookMain{
     public List<Contact> searchPersonInCityOrState(String cityOrStateName) {
         System.out.println("enter the name of the addressbook from which you want to find person by city: ");
         String ab = sc.next();
-
         return addressBookMap.get(ab).contactList.stream()
                 .filter(contact -> contact.getCity().equalsIgnoreCase(cityOrStateName)|| contact.getState().equalsIgnoreCase(cityOrStateName))
                 .collect(Collectors.toList());
+    }
+
+    public void searchPersonByCityOrStateInWholeAddressBook(String cityOrStateName){
+
+        Iterator itr = addressBookMap.keySet().iterator();
+        while(itr.hasNext()) {
+            ArrayList<Contact> persons = (ArrayList<Contact>) addressBookMap.get(itr.next()).contactList.stream()
+                    .filter(contact -> contact.getCity().equalsIgnoreCase(cityOrStateName)|| contact.getState().equalsIgnoreCase(cityOrStateName))
+                    .collect(Collectors.toList());
+            System.out.println(persons);
+        }
     }
 }
