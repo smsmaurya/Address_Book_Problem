@@ -1,7 +1,12 @@
 package com.bridgeLabz;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+
+import static com.bridgeLabz.AddressBookMain.addressBookMap;
 
 public class AddressBook{
 
@@ -45,6 +50,35 @@ public class AddressBook{
                 break;
             default : System.out.println("Choose valid number.");
                 selectOption();
+        }
+    }
+
+    public void sortContactsBy(String sortBy) {
+        List<Contact> sortedContacts;
+        switch (sortBy.toLowerCase()) {
+            case "city":
+                sortedContacts = contactList.stream()
+                        .sorted(Comparator.comparing(Contact::getCity))
+                        .collect(Collectors.toList());
+                break;
+            case "state":
+                sortedContacts = contactList.stream()
+                        .sorted(Comparator.comparing(Contact::getState))
+                        .collect(Collectors.toList());
+                break;
+            case "zip":
+                sortedContacts = contactList.stream()
+                        .sorted(Comparator.comparing(Contact::getZip))
+                        .collect(Collectors.toList());
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid sort option. Use 'city', 'state', or 'zip'.");
+        }
+
+        // Display sorted contacts
+        System.out.println("Sorted Contacts by " + sortBy + ":");
+        for (Contact contact : sortedContacts) {
+            System.out.println(contact.toString());
         }
     }
 }

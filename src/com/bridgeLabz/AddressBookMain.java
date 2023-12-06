@@ -19,7 +19,7 @@ public class AddressBookMain{
     public void multipleAddressBooks() {
         boolean check = true;
         while (check){
-            System.out.println("Select \n1. for creating Address Book\n2. for show address book\n3. search Person State And City\n4.Search person in AddressBook System\n5.Exit");
+            System.out.println("Select \n1. for creating Address Book\n2. for show address book\n3. search Person State And City\n4.Search person in AddressBook System\n5.Exit\n6. Sort Contacts");
             int select = sc.nextInt();
             switch (select){
                 case 1: createAddressBook();
@@ -53,6 +53,13 @@ public class AddressBookMain{
                 case 5:
                     System.out.println("Thank you to visit here.");
                     check = false;
+                    break;
+                case 6:
+                    System.out.println("Enter address book name to sort contacts:");
+                    String addressBookToSort = sc.next();
+                    System.out.println("Sort by (select any one ->city/state/zip):");
+                    String sortBy = sc.next();
+                    addressBookMap.get(addressBookToSort).sortContactsBy(sortBy);
                     break;
                 default:  {System.out.println("Enter or select valid number");
                     multipleAddressBooks();}
