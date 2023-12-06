@@ -83,12 +83,15 @@ public class AddressBookMain{
 
     public void searchPersonByCityOrStateInWholeAddressBook(String cityOrStateName){
 
+        int size=0;
         Iterator itr = addressBookMap.keySet().iterator();
         while(itr.hasNext()) {
             ArrayList<Contact> persons = (ArrayList<Contact>) addressBookMap.get(itr.next()).contactList.stream()
                     .filter(contact -> contact.getCity().equalsIgnoreCase(cityOrStateName)|| contact.getState().equalsIgnoreCase(cityOrStateName))
                     .collect(Collectors.toList());
+            size = persons.size()+size;
             System.out.println(persons);
         }
+        System.out.println("\nThere are total "+size+" contacts found in "+cityOrStateName+" city.");
     }
 }
