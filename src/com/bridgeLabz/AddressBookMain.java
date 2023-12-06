@@ -1,6 +1,7 @@
 package com.bridgeLabz;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBookMain{
 
@@ -18,7 +19,7 @@ public class AddressBookMain{
     public void multipleAddressBooks() {
         boolean check = true;
         while (check){
-            System.out.println("Select \n1. for creating Address Book\n2. for show address book\n3. Exit");
+            System.out.println("Select \n1. for creating Address Book\n2. for show address book\n3. search Person State And City\n4.Exit");
             int select = sc.nextInt();
             switch (select){
                 case 1: createAddressBook();
@@ -30,6 +31,21 @@ public class AddressBookMain{
                     }
                     break;
                 case 3:
+                    System.out.println("Enter city or state to search: ");
+                    String cityOrState = sc.next();
+                    List<Contact> searchResults = searchPersonInCityOrState(cityOrState);
+                    searchResults.addAll(searchPersonInCityOrState(cityOrState));
+
+                    if (searchResults.isEmpty()) {
+                        System.out.println("No matching contacts found in the specified city or state.");
+                    } else {
+                        System.out.println("Your Search Results:");
+                        for (Contact contact : searchResults) {
+                            System.out.println(contact.toString());
+                        }
+                    }
+                    break;
+                case 4:
                     System.out.println("Thank you to visit here.");
                     check = false;
                     break;
@@ -39,9 +55,7 @@ public class AddressBookMain{
         }
     }
 
-    public void displayAddressBook(Object key) {
-        System.out.println(addressBookMap.get(key));
-    }
+    public void displayAddressBook(Object key) { System.out.println(addressBookMap.get(key).getAddressBookName()); }
 
     public void createAddressBook(){
         System.out.println("Enter the address book name:");
@@ -52,5 +66,14 @@ public class AddressBookMain{
             addressBook.selectOption();
             addressBookMap.put(addressBookName,addressBook);
         }else System.out.println("Address Book already exist.");
+    }
+
+    public List<Contact> searchPersonInCityOrState(String cityOrStateName) {
+        System.out.println("enter the name of the addressbook from which you want to find person by city: ");
+        String ab = sc.next();
+
+        return addressBookMap.get(ab).contactList.stream()
+                .filter(contact -> contact.getCity().equalsIgnoreCase(cityOrStateName)|| contact.getState().equalsIgnoreCase(cityOrStateName))
+                .collect(Collectors.toList());
     }
 }
